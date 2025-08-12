@@ -1,0 +1,47 @@
+.loginpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.loginpage h1 {
+  font-size: 2rem;
+  color: #338544;
+}
+.loginpage form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: auto;
+  border: 1px solid #1F6E97;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px 0px rgba(15, 51, 64, 0.75);
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(15, 51, 64, 0.75);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(15, 51, 64, 0.75);
+}
+.loginpage form label {
+  margin: 5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.loginpage form label input {
+  margin: 5px;
+}
+.loginpage form .button {
+  background-color: #276A36;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin: 5px;
+}
+.loginpage form .button:hover {
+  background-color: rgb(25.2827586207, 68.7172413793, 35.0068965517);
+}
+
+/*# sourceMappingURL=loginpage.module.css.map */

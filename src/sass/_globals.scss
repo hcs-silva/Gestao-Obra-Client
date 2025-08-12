@@ -1,0 +1,24 @@
+// _globals.scss
+@use './variables' as *;
+
+:global(*) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:global(html, body) {
+  font-family: $font-primary;
+  background-color: $ui-800;
+  color: $primary-600;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+  align-items: center;  
+  height: 100vh;
+}
+
+:global(h1) {
+  font-size: 2rem;
+  color: $ui-900;
+}
