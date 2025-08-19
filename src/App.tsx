@@ -1,6 +1,6 @@
 import LoginPage from "./Pages/LoginPage";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Header from "./components/Header_temp";
 import Navbar from "./components/Navbar";
 import styles from "./styles/common.module.css"
 
