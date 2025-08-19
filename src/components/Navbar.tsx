@@ -9,8 +9,7 @@ const Navbar = () => {
     }
 
   return (
-    <div className={styles.navbar}>
-        <h1>Navbar</h1>
+    <div className={styles.navbar}>        
         <button onClick={goToLogin}>Login</button>
     </div>
   )
