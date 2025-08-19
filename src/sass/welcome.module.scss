@@ -1,0 +1,14 @@
+@use "../sass/variables" as *;
+@use "../sass/mixins" as *;
+
+.welcomePage{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    h1{
+        color: $blue-700;
+        font-weight: 800;
+    }   
+}

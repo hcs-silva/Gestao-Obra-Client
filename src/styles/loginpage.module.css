@@ -1,12 +1,14 @@
 .loginpage {
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 .loginpage h1 {
-  font-size: 2rem;
-  color: #338544;
+  font-size: 4rem;
+  color: #1F6E97;
+  margin: 10px;
 }
 .loginpage form {
   display: flex;
@@ -23,14 +25,14 @@
 .loginpage form label {
   margin: 5px;
   font-family: "Roboto", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 .loginpage form label input {
   margin: 5px;
 }
 .loginpage form .button {
-  background-color: #276A36;
+  background-color: #1F6E97;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -41,7 +43,7 @@
   margin: 5px;
 }
 .loginpage form .button:hover {
-  background-color: rgb(25.2827586207, 68.7172413793, 35.0068965517);
+  background-color: rgb(22.3131868132, 79.1758241758, 108.6868131868);
 }
 
 /*# sourceMappingURL=loginpage.module.css.map */

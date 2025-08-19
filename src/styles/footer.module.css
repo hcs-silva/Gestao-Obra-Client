@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1F6E97;
+  height: auto;
+}
+.footer h3 {
+  font-size: 1.25rem;
+  margin: 45px;
+}
+
+/*# sourceMappingURL=footer.module.css.map */

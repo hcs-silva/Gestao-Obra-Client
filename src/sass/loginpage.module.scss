@@ -2,11 +2,13 @@
 @use "../sass/mixins" as *;
 
 .loginpage {
+  width: 90%;
   @include flex-center;
   flex-direction: column;
   h1{
-    font-size: 2rem;
-    color: $green-600;
+    font-size: 4rem;
+    color: $blue-700;
+    margin: 10px;
   }
   form {
     @include flex-center;
@@ -20,14 +22,14 @@
     label {
       margin: 5px;
       font-family: $font-primary;
-      font-size: $fs-small;
+      font-size: $fs-large;
       font-weight: 700;
       input {
         margin: 5px;
       }
     }
     .button {
-      @include button($green-700);
+      @include button($blue-700);
       margin: 5px;
     }
   }

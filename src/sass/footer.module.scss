@@ -1,0 +1,15 @@
+@use "../sass/variables" as *;
+@use "../sass/mixins" as *;
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $blue-700;
+    height: auto;
+    h3 {
+        font-size: $fs-large;
+        margin: 45px
+    }
+}

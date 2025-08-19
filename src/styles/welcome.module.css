@@ -1,0 +1,13 @@
+.welcomePage {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.welcomePage h1 {
+  color: #1F6E97;
+  font-weight: 800;
+}
+
+/*# sourceMappingURL=welcome.module.css.map */
