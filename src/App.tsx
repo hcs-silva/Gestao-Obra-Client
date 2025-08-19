@@ -8,15 +8,16 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
 
-  
+
   return (
     <>
       <div className={styles.layout}>
         <Header />
         <div className={styles.main}>
           <Navbar />
-          <WelcomePage />
+          
           <Routes>
+            <Route path="/" element={<WelcomePage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
           </Routes>
         </div>

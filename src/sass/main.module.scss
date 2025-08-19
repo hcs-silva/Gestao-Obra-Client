@@ -1,13 +1,16 @@
 @use "../sass/variables" as *;
 @use "../sass/mixins" as *;
 
-.navbar{
-    width: 10%;
-    border: 1px solid $blue-700;
-    display: flex;
-    flex-direction: column;
-    h1{
-        color: $blue-700;
-    }
+.navbar {
+  width: 10%;
+  border: 1px solid $blue-700;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    color: $blue-700;
+  }
+  button {
+    @include button($blue-700);
+    margin: 5px;
+  }
 }
-
