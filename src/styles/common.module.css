@@ -9,4 +9,15 @@ h1 {
   color: #333;
 }
 
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  border: 1px solid #ccc;
+  height: 70vh;
+}
+
 /*# sourceMappingURL=common.module.css.map */

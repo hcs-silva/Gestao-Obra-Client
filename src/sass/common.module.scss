@@ -8,3 +8,14 @@ h1 {
     font-size: 2rem;
     color: #333;
 }
+
+.layout {
+    display:flex;
+    flex-direction: column;
+}
+
+.main {
+    display: flex;
+    border: 1px solid #ccc;
+    height: 70vh;
+}
