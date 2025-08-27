@@ -1,28 +1,27 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/loginpage.module.css";
-import axios from "axios";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+import { useAuth } from "../hooks/useAuth";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const nav = useNavigate()
+  const { login } = useAuth();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const userToLogin = {
-      username,
-      password,
-    };
+    try {
+      await login(username, password);
+      nav("/dashboard")
+    } catch (error) {
+      console.log(error);
+      alert("Login failed!");
+    }
 
-      //TODO: Finish implementing login workflow here and in the server and role-based authentication
-
-    axios
-      .post(`${BACKEND_URL}/users/login`, userToLogin).then((response) => {
-        localStorage.setItem("token", response.data.authToken);
-        localStorage.setItem("userId", response.data.userId)
-      })
-      
+    //TODO: Finish implementing login workflow here and in the server
+    // role-based authentication
   }
 
   return (

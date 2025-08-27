@@ -5,11 +5,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 //Importing global styles
 import "../src/sass/_globals.scss";
+import { AuthProvider } from "./contexts/authProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <App />
+      </Router>
+    </AuthProvider>
   </StrictMode>
 );

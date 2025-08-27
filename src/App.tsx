@@ -1,3 +1,4 @@
+import DashboardPage from "./Pages/DashboardPage";
 import LoginPage from "./Pages/LoginPage";
 import WelcomePage from "./Pages/WelcomePage";
 import Footer from "./components/Footer";
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<WelcomePage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/dashboard" element={<DashboardPage/>}></Route>
           </Routes>
         </div>
         <Footer />
