@@ -1,4 +1,5 @@
 @use './variables' as *;
+@use 'sass:color';
 
 @mixin flex-center {
   display: flex;
@@ -21,6 +22,6 @@
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: darken($bg-color, 10%);
+    background-color: color.adjust($bg-color, $lightness: -10%);
   }
 }

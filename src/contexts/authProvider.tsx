@@ -1,16 +1,10 @@
 import { useState, type ReactNode } from "react";
 import axios from "axios";
 
-import type {User} from "../types/auth";
+import type { User } from "../types/auth";
 import { AuthContext } from "./authContext";
 
-
-
 const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:5005";
-
-
-
-
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -18,26 +12,34 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const login = (username: string, password: string) => {
     axios
       .post(`${BACKEND_URL}/users/login`, { username, password })
       .then((response) => {
         localStorage.setItem("token", response.data.authToken);
         localStorage.setItem("userId", response.data.userId);
-        
+        setIsLoggedIn(true);
+        setUser({
+          username,
+          password,
+          isAdmin: response.data.isAdmin,
+          masterAdmin: response.data.masterAdmin,
+          resetPassword: response.data.resetPassword
+        });
       });
-    setUser({ username, password });
   };
 
-  const logout = () => {};
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setIsLoggedIn(false)
+  };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );
 };
-
-
