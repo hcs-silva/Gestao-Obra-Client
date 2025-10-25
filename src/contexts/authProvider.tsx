@@ -22,6 +22,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem("userId", response.data.userId);
         setIsLoggedIn(true);
         setUser({
+          userId: response.data.userId,
           username,
           password,
           isAdmin: response.data.isAdmin,

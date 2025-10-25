@@ -24,7 +24,7 @@ function App() {
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/dashboard" element={<DashboardPage />}></Route>
             <Route path="/masterdash" element={<MasterDashboard />}></Route>
-            <Route path="/resetpassword" element={<PasswordUpdatePage/>}></Route>
+            <Route path="/resetpassword/:userId" element={<PasswordUpdatePage/>}></Route>
           </Routes>
         </div>
         <Footer />

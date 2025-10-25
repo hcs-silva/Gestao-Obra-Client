@@ -1,4 +1,4 @@
-export type User = { username: string; password: string; isAdmin: boolean; masterAdmin: boolean; resetPassword: boolean };
+export type User = { userId: string; username: string; password: string; isAdmin: boolean; masterAdmin: boolean; resetPassword: boolean };
 
 export interface AuthContextType {
   user: User | null;

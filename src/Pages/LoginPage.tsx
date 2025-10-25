@@ -15,8 +15,9 @@ const LoginPage = () => {
     try {
       await login(username, password);
       if(user?.resetPassword === true) {
-        nav("/resetpassword")
+        nav(`/resetpassword/${user.userId}`)
       }else if(user?.masterAdmin === true){
+        console.log(user.masterAdmin)
         nav("/masterdash")
       }else if (user?.isAdmin === true){
         nav("/dashboard")

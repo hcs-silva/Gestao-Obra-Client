@@ -9,7 +9,7 @@ const Navbar = () => {
   function goToLogin() {
     nav("/login");
   }
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   return (
     <div
       className={`${styles.navbar} ${
