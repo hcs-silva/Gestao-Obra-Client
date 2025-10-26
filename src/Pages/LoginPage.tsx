@@ -7,20 +7,19 @@ import { useAuth } from "../hooks/useAuth";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const nav = useNavigate()
+  const nav = useNavigate();
   const { login, user } = useAuth();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
       await login(username, password);
-      if(user?.resetPassword === true) {
-        nav(`/resetpassword/${user.userId}`)
-      }else if(user?.masterAdmin === true){
-        console.log(user.masterAdmin)
-        nav("/masterdash")
-      }else if (user?.isAdmin === true){
-        nav("/dashboard")
+      if (user?.resetPassword === true) {
+        nav(`/resetpassword/${user.userId}`);
+      } else if (user?.masterAdmin === true) {
+        nav("/masterdash");
+      } else if (user?.isAdmin === true) {
+        nav("/dashboard");
       }
     } catch (error) {
       console.log(error);

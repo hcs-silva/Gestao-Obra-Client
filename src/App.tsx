@@ -3,6 +3,8 @@ import LoginPage from "./Pages/LoginPage";
 import MasterDashboard from "./Pages/MasterDashboard";
 import PasswordUpdatePage from "./Pages/PasswordUpdatePage";
 import WelcomePage from "./Pages/WelcomePage";
+import ClientList from "./components/ClientList";
+import CreateClient from "./components/CreateClient";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
@@ -25,6 +27,8 @@ function App() {
             <Route path="/dashboard" element={<DashboardPage />}></Route>
             <Route path="/masterdash" element={<MasterDashboard />}></Route>
             <Route path="/resetpassword/:userId" element={<PasswordUpdatePage/>}></Route>
+            <Route path="/addclient" element={<CreateClient/>}></Route>
+            <Route path="/allclients" element ={<ClientList/>}></Route> 
           </Routes>
         </div>
         <Footer />
