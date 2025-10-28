@@ -2,11 +2,15 @@ import { useNavigate } from "react-router-dom";
 const CreateClient = () => {
   const nav = useNavigate();
 
-  //TODO: Implement connection between front and backend.
+  //TODO: Implement connection between front and backend. 
+
+  function handleCreateClient(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
   return (
     <div>
       <h1>Create Client</h1>
-      <form>
+      <form onSubmit={handleCreateClient}>
         <label>
           Client Name:
           <input type="text" />

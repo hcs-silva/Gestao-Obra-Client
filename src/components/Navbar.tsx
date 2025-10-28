@@ -1,33 +1,27 @@
 import styles from "../styles/main.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { roleConfig} from "../config/roleConfig";
+import type { UserRole } from "../config/roleConfig";
 
 const Navbar = () => {
-  const { isLoggedIn, logout } = useAuth();
+ const { isLoggedIn, logout, user } = useAuth();
   const nav = useNavigate();
 
-  function goToLogin() {
-    nav("/login");
-  }
-  // console.log(isLoggedIn);
+  const role: UserRole = (isLoggedIn ? user?.role : 'guest') ?? 'guest'
+  const items = role ? roleConfig.actions[role] : [];
+
+  const handlers: Record<string, () => void> = {
+    login: () => nav('/login'),
+    logout: () => { logout(); nav('/'); },
+  };
+
   return (
-    <div
-      className={`${styles.navbar} ${
-        isLoggedIn ? styles.logoutButton : styles.loginButton
-      }`}
-    >
-      {" "}
-      {isLoggedIn ? (
-        <button
-          onClick={() => {
-            logout();
-            nav("/");
-          }}
-        >
-          Logout
-        </button>
-      ) : (
-        <button onClick={goToLogin}>Login</button>
+    <div className={`${styles.navbar} ${role === 'guest' ? styles.loginButton : styles.logoutButton}`}>
+      {items.map((it) =>
+        'to' in it
+          ? <button key={it.label} onClick={() => nav(it.to)}>{it.label}</button>
+          : <button key={it.label} onClick={handlers[it.onClick] ?? (() => {})}>{it.label}</button>
       )}
     </div>
   );

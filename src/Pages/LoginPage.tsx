@@ -14,11 +14,12 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await login(username, password);
+     
       if (user?.resetPassword === true) {
         nav(`/resetpassword/${user.userId}`);
-      } else if (user?.masterAdmin === true) {
+      } else if (user?.role === "masterAdmin") {
         nav("/masterdash");
-      } else if (user?.isAdmin === true) {
+      } else if (user?.role === "Admin") {
         nav("/dashboard");
       }
     } catch (error) {
@@ -26,10 +27,10 @@ const LoginPage = () => {
       alert("Login failed!");
     }
 
-    //TODO: Finish implementing login workflow here and in the server
-    // role-based authentication
   }
-
+  
+  //TODO: Finish implementing login workflow here and in the server
+  // role-based authentication
   return (
     <div className={styles.loginpage}>
       <h1 className={styles.h1}>Login</h1>

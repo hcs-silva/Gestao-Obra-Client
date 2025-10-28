@@ -25,8 +25,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           userId: response.data.userId,
           username,
           password,
-          isAdmin: response.data.isAdmin,
-          masterAdmin: response.data.masterAdmin,
+          role:response.data.role,
           resetPassword: response.data.resetPassword
         });
       });
