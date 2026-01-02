@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/loginpage.module.css";
 
@@ -14,21 +14,20 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await login(username, password);
-     
-      if (user?.resetPassword === true) {
-        nav(`/resetpassword/${user.userId}`);
-      } else if (user?.role === "masterAdmin") {
-        nav("/masterdash");
-      } else if (user?.role === "Admin") {
-        nav("/dashboard");
-      }
     } catch (error) {
       console.log(error);
       alert("Login failed!");
     }
-
   }
-  
+  useEffect(() => {
+    if (user?.resetPassword === true) {
+      nav(`/resetpassword/${user.userId}`);
+    } else if (user?.role === "masterAdmin") {
+      nav("/masterdash");
+    } else if (user?.role === "Admin") {
+      nav("/dashboard");
+    }
+  }, [user, nav]);
   //TODO: Finish implementing login workflow here and in the server
   // role-based authentication
   return (

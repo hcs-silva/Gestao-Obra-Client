@@ -3,7 +3,6 @@ import type { UserRole } from "../config/roleConfig";
 export type User = {
   userId: string;
   username: string;
-  password: string;
   // isAdmin: boolean;
   // masterAdmin: boolean;
   role: UserRole;

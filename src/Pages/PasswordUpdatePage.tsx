@@ -10,25 +10,32 @@ const PasswordUpdatePage = () => {
   const { userId } = useParams();
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const {user} = useAuth();
+  const { user } = useAuth();
   const nav = useNavigate();
 
   async function handlePasswordChange(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     try {
-      await axios.patch(`${BACKEND_URL}/users/resetpassword/${userId}`, {
-        newPassword,
-      });
-      setNewPassword("")
-      setConfirmNewPassword("")
-      if(user?.masterAdmin === true){
-        console.log(user.masterAdmin)
-        nav("/masterdash")
-      }else if (user?.isAdmin === true){
-        nav("/dashboard")
+      const passwordsMatch = newPassword === confirmNewPassword;
+      if (!passwordsMatch) {
+        throw new Error("Passwords do not match");
       }
-      
+      await axios.patch(
+        `${BACKEND_URL}/users/resetpassword/${userId}`,
+        { newPassword },
+
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setNewPassword("");
+      setConfirmNewPassword("");
+      if (user?.role === "masterAdmin") {
+        nav("/masterdash");
+      } else if (user?.role === "Admin") {
+        nav("/dashboard");
+      }
     } catch (error) {
       console.log(error);
     }
