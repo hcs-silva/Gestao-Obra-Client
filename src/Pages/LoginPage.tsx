@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../styles/loginpage.module.css";
 
 import { useAuth } from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -14,7 +15,9 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await login(username, password);
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message || "Login failed. Please check your credentials.";
+      toast.error(errorMessage);
       // Error handling is done in authProvider, but we catch here to prevent unhandled rejection
       // Toast notification is already shown by authProvider
       
