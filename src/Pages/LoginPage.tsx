@@ -15,8 +15,9 @@ const LoginPage = () => {
     try {
       await login(username, password);
     } catch (error) {
-      console.log(error);
-      alert("Login failed!");
+      // Error handling is done in authProvider, but we catch here to prevent unhandled rejection
+      // Toast notification is already shown by authProvider
+      
     }
   }
   useEffect(() => {

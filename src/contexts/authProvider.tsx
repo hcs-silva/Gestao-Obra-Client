@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import type { User } from "../types/auth";
 import { AuthContext } from "./authContext";
@@ -15,20 +16,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const login = async (username: string, password: string) => {
-    const response = await axios.post(`${BACKEND_URL}/users/login`, {
-      username,
-      password,
-    });
+    try {
+      const response = await axios.post(`${BACKEND_URL}/users/login`, {
+        username,
+        password,
+      });
 
-    localStorage.setItem("token", response.data.authToken);
-    localStorage.setItem("userId", response.data.userId);
-    setIsLoggedIn(true);
-    setUser({
-      userId: response.data.userId,
-      username,
-      role: response.data.role,
-      resetPassword: response.data.resetPassword,
-    });
+      localStorage.setItem("token", response.data.authToken);
+      localStorage.setItem("userId", response.data.userId);
+      setIsLoggedIn(true);
+      setUser({
+        userId: response.data.userId,
+        username,
+        role: response.data.role,
+        resetPassword: response.data.resetPassword,
+      });
+      
+      toast.success("Login successful!");
+    } catch (error: unknown) {
+      const errorMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message || "Login failed. Please check your credentials.";
+      toast.error(errorMessage);
+      throw error;
+    }
   };
 
   const logout = () => {

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:5005";
 
@@ -17,27 +18,41 @@ const PasswordUpdatePage = () => {
     e.preventDefault();
 
     try {
+      // Validate password length
+      if (newPassword.length < 8) {
+        toast.error("Password must be at least 8 characters long");
+        return;
+      }
+
       const passwordsMatch = newPassword === confirmNewPassword;
       if (!passwordsMatch) {
-        throw new Error("Passwords do not match");
+        toast.error("Passwords do not match");
+        return;
       }
+
       await axios.patch(
         `${BACKEND_URL}/users/resetpassword/${userId}`,
         { newPassword },
-
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
+
+      toast.success("Password updated successfully!");
       setNewPassword("");
       setConfirmNewPassword("");
-      if (user?.role === "masterAdmin") {
-        nav("/masterdash");
-      } else if (user?.role === "Admin") {
-        nav("/dashboard");
-      }
-    } catch (error) {
-      console.log(error);
+
+      // Navigate after a short delay to show success message
+      setTimeout(() => {
+        if (user?.role === "masterAdmin") {
+          nav("/masterdash");
+        } else if (user?.role === "Admin") {
+          nav("/dashboard");
+        }
+      }, 1500);
+    } catch (error: unknown) {
+      const errorMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message || "Failed to update password. Please try again.";
+      toast.error(errorMessage);
     }
   }
 
