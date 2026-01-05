@@ -6,12 +6,14 @@ import { toast } from "react-toastify";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
 const CreateClient = () => {
   const nav = useNavigate();
-  const [profilePicture, setProfilePicture] = useState<string>("");
+  const [clientLogo, setClientLogo] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [clientName, setClientName] = useState("");
   const [adminUsername, setAdminUsername] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
+
+  const DEFAULT_CLIENT_LOGO = "../assets/defaultUser.jpg";
 
   async function handleCreateClient(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,13 +32,14 @@ const CreateClient = () => {
 
     try {
       const token = localStorage.getItem("token");
+
       await axios.post(
         `${BACKEND_URL}/clients/createClient`,
         {
-          ClientName: clientName.trim(),
-          AdminUsername: adminUsername.trim().toLowerCase(),
-          AdminPassword: adminPassword,
-          ...(profilePicture && { ClientLogo: profilePicture }), // Include logo if uploaded
+          clientName: clientName.trim(),
+          adminUsername: adminUsername.trim().toLowerCase(),
+          adminPassword: adminPassword,
+          clientLogo: clientLogo || DEFAULT_CLIENT_LOGO,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -49,7 +52,8 @@ const CreateClient = () => {
       setClientName("");
       setAdminUsername("");
       setAdminPassword("");
-      setProfilePicture("");
+      setClientLogo("");
+      setImageFile(null);
 
       // Navigate back after a short delay
       setTimeout(() => {
@@ -90,7 +94,7 @@ const CreateClient = () => {
         formData
       );
 
-      setProfilePicture(response.data.secure_url);
+      setClientLogo(response.data.secure_url);
       toast.success("Image uploaded successfully!");
     } catch (error: unknown) {
       const errorMessage =
