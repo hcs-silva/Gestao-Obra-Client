@@ -29,7 +29,7 @@ const LoginPage = () => {
     } else if (user?.role === "masterAdmin") {
       nav("/masterdash");
     } else if (user?.role === "Admin") {
-      nav("/dashboard");
+      nav(`/dashboard/${user.clientId}`);
     }
   }, [user, nav]);
   //TODO: Finish implementing login workflow here and in the server

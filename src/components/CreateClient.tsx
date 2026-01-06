@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
 const CreateClient = () => {
   const nav = useNavigate();
-  const [clientLogo, setClientLogo] = useState<string>("");
+  
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [clientName, setClientName] = useState("");
@@ -30,6 +30,9 @@ const CreateClient = () => {
       return;
     }
 
+    const uploadedUrl = await handleUpload();
+    const finalLogoUrl = uploadedUrl || DEFAULT_CLIENT_LOGO;
+
     try {
       const token = localStorage.getItem("token");
 
@@ -39,7 +42,7 @@ const CreateClient = () => {
           clientName: clientName.trim(),
           adminUsername: adminUsername.trim().toLowerCase(),
           adminPassword: adminPassword,
-          clientLogo: clientLogo || DEFAULT_CLIENT_LOGO,
+          clientLogo: finalLogoUrl,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -51,8 +54,7 @@ const CreateClient = () => {
       // Reset form
       setClientName("");
       setAdminUsername("");
-      setAdminPassword("");
-      setClientLogo("");
+      setAdminPassword("");      
       setImageFile(null);
 
       // Navigate back after a short delay
@@ -67,8 +69,6 @@ const CreateClient = () => {
     }
   }
 
-  //TODO: fix image upload functionality and correct models on the backend ASAP
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -78,8 +78,7 @@ const CreateClient = () => {
 
   const handleUpload = async () => {
     if (!imageFile) {
-      toast.warning("Please select an image file");
-      return;
+      return null;
     }
 
     setUploading(true);
@@ -94,8 +93,7 @@ const CreateClient = () => {
         formData
       );
 
-      setClientLogo(response.data.secure_url);
-      toast.success("Image uploaded successfully!");
+      return response.data.secure_url;
     } catch (error: unknown) {
       const errorMessage =
         (error as { response?: { data?: { message?: string } } })?.response
@@ -105,6 +103,7 @@ const CreateClient = () => {
       setUploading(false);
     }
   };
+
   return (
     <div>
       <h1>Create Client</h1>
@@ -125,16 +124,7 @@ const CreateClient = () => {
             onChange={handleImageChange}
             className="border-cream-300 text-cream-700"
           />
-          <button
-            type="button"
-            onClick={handleUpload}
-            disabled={uploading}
-            className={
-              uploading ? "bg-cream-400 cursor-not-allowed" : "bg-cream-600"
-            }
-          >
-            {uploading ? "Uploading..." : "Upload Image"}
-          </button>
+          
         </label>
         <label>
           Administrator Username:
@@ -152,7 +142,9 @@ const CreateClient = () => {
             onChange={(e) => setAdminPassword(e.target.value)}
           />
         </label>
-        <button type="submit">Create Client</button>
+        <button type="submit" disabled={uploading}>
+          {uploading ? "Uploading..." : "Create Client"}
+        </button>
       </form>
       <button onClick={() => nav("/masterdash")}>Back</button>
     </div>

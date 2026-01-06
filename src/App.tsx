@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<WelcomePage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/dashboard" element={<DashboardPage />}></Route>
+            <Route path="/dashboard/:clientId" element={<DashboardPage />}></Route>
             <Route path="/masterdash" element={<MasterDashboard />}></Route>
             <Route path="/resetpassword/:userId" element={<PasswordUpdatePage/>}></Route>
             <Route path="/addclient" element={<CreateClient/>}></Route>

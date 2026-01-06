@@ -2,18 +2,23 @@
 @use "../sass/mixins" as *;
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    img{
-        height:auto;
-        margin: 20px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 200px;
 
-    h1{
-        font-family: $font-primary;
-        color: $blue-700;
-        font-weight: 700;
-        font-size: 3rem;
-    }
+  h1 {
+    font-family: $font-primary;
+    color: $blue-700;
+    font-weight: 700;
+    font-size: 3rem;
+  }
+}
+
+img {
+  height: 150px;
+  margin: 20px;
+}
+.hidden {
+  display: none;
 }

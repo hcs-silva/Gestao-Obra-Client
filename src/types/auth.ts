@@ -1,6 +1,7 @@
 import type { UserRole } from "../config/roleConfig";
 
 export type User = {
+  clientId: string;
   userId: string;
   username: string;
   // isAdmin: boolean;
