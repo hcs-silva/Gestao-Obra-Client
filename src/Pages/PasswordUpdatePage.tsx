@@ -47,7 +47,7 @@ const PasswordUpdatePage = () => {
         if (user?.role === "masterAdmin") {
           nav("/masterdash");
         } else if (user?.role === "Admin") {
-          nav("/dashboard");
+          nav(`/dashboard/${user.clientId}`);
         }
       }, 1500);
     } catch (error: unknown) {
@@ -56,7 +56,7 @@ const PasswordUpdatePage = () => {
     }
   }
 
-  //TODO: Finish implementing styles in password update page, and logic for first mandatory password update
+  
   return (
     <div className={styles.passwordUpdatePage}>
       <h1>Password Update Page</h1>

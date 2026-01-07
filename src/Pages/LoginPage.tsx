@@ -11,16 +11,17 @@ const LoginPage = () => {
   const nav = useNavigate();
   const { login, user } = useAuth();
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      await login(username, password);
+      login(username, password);
     } catch (error: unknown) {
-      const errorMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message || "Login failed. Please check your credentials.";
+      const errorMessage =
+        (error as { response?: { data?: { message?: string } } })?.response
+          ?.data?.message || "Login failed. Please check your credentials.";
       toast.error(errorMessage);
       // Error handling is done in authProvider, but we catch here to prevent unhandled rejection
       // Toast notification is already shown by authProvider
-      
     }
   }
   useEffect(() => {
@@ -32,8 +33,7 @@ const LoginPage = () => {
       nav(`/dashboard/${user.clientId}`);
     }
   }, [user, nav]);
-  //TODO: Finish implementing login workflow here and in the server
-  // role-based authentication
+
   return (
     <div className={styles.loginpage}>
       <h1 className={styles.h1}>Login</h1>

@@ -13,7 +13,7 @@ const CreateClient = () => {
   const [adminUsername, setAdminUsername] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
 
-  const DEFAULT_CLIENT_LOGO = "../assets/defaultUser.jpg";
+  const DEFAULT_CLIENT_LOGO = "https://res.cloudinary.com/dzdrwiugn/image/upload/v1767800594/defaultUser_wqi7iy.jpg";
 
   async function handleCreateClient(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

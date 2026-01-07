@@ -13,7 +13,7 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
 
-  //TODO: Implement protection for relevant Routes 
+  
   return (
     <>
       <div className={styles.layout}>

@@ -20,10 +20,9 @@ const Header = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
-        console.log("Full Response:", response);
-        console.log("Response Data:", response.data);
+        
         const logoUrl = response.data.clientLogo;
-        console.log("Client Logo URL:", logoUrl);
+        
         setLogoToDisplay(logoUrl);
       })
       .catch((error) => {
