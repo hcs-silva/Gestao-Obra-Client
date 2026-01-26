@@ -36,4 +36,8 @@
   background-color: rgb(150.3319148936, 40.714893617, 33.6680851064);
 }
 
+.hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=main.module.css.map */

@@ -15,4 +15,12 @@ export interface AuthContextType {
   login: (username: string, password: string) => void;
   logout: () => void;
   isLoggedIn: boolean;
+  setUser: (user: User | null) => void;
+}
+
+export interface Client {
+  _id: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
 }
