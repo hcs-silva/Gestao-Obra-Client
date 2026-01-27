@@ -1,32 +1,7 @@
 @use "../sass/variables" as *;
 @use "../sass/mixins" as *;
 
-.navbar {
-  width: 10%;
-  border: 1px solid $blue-700;
-  display: flex;
-  flex-direction: column;
-  h1 {
-    color: $blue-700;
-  }
-
-  &.loginButton {
-    button {
-      @include button($blue-700);
-      margin: 5px;
-    }
-  }
-
-  &.logoutButton {
-    button {
-      @include button($red-600);
-      margin: 5px;
-    }
-  }
-  
-}
-
-.hidden {
-  display: none;
-}
-
+// All styling for main.module.scss should be in other files:
+// - Layout: common.module.scss
+// - Utilities: _globals.scss
+// This file is kept for backwards compatibility but is intentionally empty

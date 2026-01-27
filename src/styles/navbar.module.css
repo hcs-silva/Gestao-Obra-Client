@@ -1,0 +1,149 @@
+.navbar {
+  width: 220px;
+  background: #111827;
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 1rem;
+  min-height: 100%;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+.navbar h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.navbar img {
+  max-height: 150px;
+  max-width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+.navbar.loginButton button {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  background-color: #2563eb;
+  color: white;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.navbar.loginButton button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.navbar.loginButton button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+}
+.navbar.logoutButton button {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  background-color: #ef4444;
+  color: white;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.navbar.logoutButton button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.navbar.logoutButton button:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.navbar .actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.navbar .actions button {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  background-color: #2563eb;
+  color: white;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  padding: 0.5rem 1.5rem;
+}
+.navbar .actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.navbar .actions button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+}
+.navbar .hidden {
+  display: none;
+}
+
+.mobileMenu {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobileMenu {
+    display: block;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  .mobileMenu a {
+    display: block;
+    padding: 1rem;
+    color: #4b5563;
+  }
+  .mobileMenu a:hover {
+    background: #eaf6fb;
+    color: #2563eb;
+  }
+}
+
+/*# sourceMappingURL=navbar.module.css.map */

@@ -1,21 +1,125 @@
+.wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px;
+  width: 100%;
 }
 .table th {
-  border: 1px solid #4FA8D5;
-  text-align: center;
-  padding: 15px;
-  color: white;
+  background: #f9fafb;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
 }
 .table td {
-  border: 1px solid #4FA8D5;
-  padding: 15px;
-  text-align: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.table tr:hover {
+  background: #f9fafb;
 }
 .table th {
-  background-color: #1F6E97;
+  background: #eaf6fb;
+  color: #1e40af;
+  font-weight: 600;
+}
+.table td {
+  color: #374151;
+}
+.table tr:hover {
+  background: #f9fafb;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.editBtn {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  background-color: #2563eb;
+  color: white;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+.editBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.editBtn:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+}
+
+.deleteBtn {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  background-color: #ef4444;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+.deleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.deleteBtn:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 3rem;
+  color: #6b7280;
+}
+.emptyState p {
+  font-size: 1.125rem;
 }
 
 /*# sourceMappingURL=clientlist.module.css.map */

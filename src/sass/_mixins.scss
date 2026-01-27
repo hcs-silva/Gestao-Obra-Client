@@ -1,27 +1,274 @@
-@use './variables' as *;
-@use 'sass:color';
+@use "./variables" as *;
+@use "sass:color";
 
+// Flexbox Utilities
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+// Typography
 @mixin responsive-font($min-size, $max-size) {
   font-size: clamp($min-size, 2vw, $max-size);
 }
 
-@mixin button($bg-color, $text-color: #fff) {
-  background-color: $bg-color;
-  color: $text-color;
-  padding: $space-sm $space-md;
+@mixin heading($size: 2rem, $weight: 700, $color: $gray-900) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  line-height: 1.2;
+}
+
+// Button Styles
+@mixin button-base {
   border: none;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: $radius-md;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: all $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  padding: $space-sm $space-lg;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary-500;
+  color: white;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+
+  &:hover:not(:disabled) {
+    background-color: $primary-600;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: white;
+  color: $primary-500;
+  border: 2px solid $primary-500;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-50;
+  }
+}
+
+@mixin button-success {
+  @include button-base;
+  background-color: $secondary-500;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: $secondary-600;
+  }
+}
+
+@mixin button-danger {
+  @include button-base;
+  background-color: $error-500;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: $error-600;
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background-color: transparent;
+  color: $primary-500;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-50;
+  }
+}
+
+// Cards
+@mixin card {
+  background: $bg-white;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-md;
+  transition: all $transition-base;
 
   &:hover {
-    background-color: color.adjust($bg-color, $lightness: -10%);
+    transform: translateY(-3px);
+    box-shadow: $shadow-lg;
   }
+}
+
+@mixin card-elevated {
+  @include card;
+  box-shadow: $shadow-xl;
+
+  &:hover {
+    box-shadow: $shadow-2xl;
+  }
+}
+
+// Navigation
+@mixin nav-item {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-md $space-lg;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-base;
+  color: $gray-600;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $gray-100;
+    color: $primary-500;
+  }
+
+  &.active {
+    background-color: $primary-500;
+    color: white;
+    border-left: 4px solid $primary-400;
+  }
+}
+
+// Input Fields
+@mixin input-base {
+  width: 100%;
+  padding: $space-sm $space-md;
+  border: 1px solid $gray-300;
+  border-radius: $radius-md;
+  font-family: $font-primary;
+  font-size: $fs-base;
+  transition: all $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-500;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  &:disabled {
+    background-color: $gray-100;
+    cursor: not-allowed;
+  }
+}
+
+// Badges
+@mixin badge($bg-color, $text-color: white) {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-xs $space-sm;
+  background-color: $bg-color;
+  color: $text-color;
+  border-radius: $radius-full;
+  font-size: $fs-small;
+  font-weight: 600;
+}
+
+@mixin badge-success {
+  @include badge($success-50, $success-600);
+}
+
+@mixin badge-error {
+  @include badge($error-50, $error-600);
+}
+
+@mixin badge-warning {
+  @include badge($warning-50, $warning-600);
+}
+
+@mixin badge-info {
+  @include badge($info-50, $info-600);
+}
+
+// Alerts
+@mixin alert($bg-color, $border-color, $text-color) {
+  padding: $space-md;
+  background-color: $bg-color;
+  border-left: 4px solid $border-color;
+  border-radius: $radius-md;
+  color: $text-color;
+  margin-bottom: $space-md;
+}
+
+@mixin alert-success {
+  @include alert($success-50, $success-500, $success-600);
+}
+
+@mixin alert-error {
+  @include alert($error-50, $error-500, $error-600);
+}
+
+@mixin alert-warning {
+  @include alert($warning-50, $warning-500, $warning-600);
+}
+
+@mixin alert-info {
+  @include alert($info-50, $info-500, $info-600);
+}
+
+// Tables
+@mixin table-base {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background: $gray-50;
+    padding: $space-md;
+    text-align: left;
+    font-weight: 600;
+    color: $gray-900;
+    border-bottom: 2px solid $gray-200;
+  }
+
+  td {
+    padding: $space-md;
+    border-bottom: 1px solid $gray-200;
+  }
+
+  tr:hover {
+    background: $gray-50;
+  }
+}
+
+// Shadows
+@mixin shadow-sm {
+  box-shadow: $shadow-sm;
+}
+
+@mixin shadow-md {
+  box-shadow: $shadow-md;
+}
+
+@mixin shadow-lg {
+  box-shadow: $shadow-lg;
+}
+
+// Responsive Grid
+@mixin grid($columns: auto-fit, $min-width: 300px, $gap: $space-lg) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax($min-width, 1fr));
+  gap: $gap;
 }

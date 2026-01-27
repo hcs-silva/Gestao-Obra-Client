@@ -1,6 +1,8 @@
+import styles from '../sass/dashboard.module.scss'
+
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+    <div className={styles.dashboardContainer}>DashboardPage</div>
   )
 }
 export default DashboardPage

@@ -1,15 +1,30 @@
 @use "../sass/variables" as *;
 @use "../sass/mixins" as *;
 
-
 .footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $blue-700;
-    height: auto;
-    h3 {
-        font-size: $fs-large;
-        margin: 45px
+  @include flex-center;
+  background: $gray-900;
+  color: white;
+  padding: $space-2xl $space-lg;
+  
+  text-align: center;
+  border-top: 1px solid $gray-800;
+
+  h3 {
+    @include heading($fs-xl, 600, white);
+    margin-bottom: $space-md;
+  }
+
+  p {
+    color: $gray-300;
+    font-size: $fs-small;
+  }
+
+  a {
+    color: $primary-400;
+
+    &:hover {
+      color: $primary-100;
     }
+  }
 }

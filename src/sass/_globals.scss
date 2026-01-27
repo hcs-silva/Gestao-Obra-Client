@@ -1,24 +1,183 @@
 // _globals.scss
-@use './variables' as *;
+@use "./variables" as *;
+@use "./mixins" as *;
 
+// CSS Reset
 :global(*) {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-:global(html, body) {
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+// Body Styles
+:global(body) {
   font-family: $font-primary;
-  background-color: $ui-800;
-  color: $primary-600;
-  display: flex;
-  flex-direction: column;  
-  justify-content: center;
-  align-items: center;  
-  height: 100vh;
+  background-color: $bg-light;
+  color: $gray-800;
+  line-height: 1.6;
+  font-size: $fs-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+// Typography
 :global(h1) {
-  font-size: 2rem;
-  color: $ui-900;
+  @include heading($fs-4xl, 700, $gray-900);
+}
+
+:global(h2) {
+  @include heading($fs-3xl, 700, $gray-900);
+}
+
+:global(h3) {
+  @include heading($fs-2xl, 600, $gray-900);
+}
+
+:global(h4) {
+  @include heading($fs-xl, 600, $gray-800);
+}
+
+:global(h5) {
+  @include heading($fs-lg, 600, $gray-800);
+}
+
+:global(h6) {
+  @include heading($fs-base, 600, $gray-800);
+}
+
+:global(p) {
+  color: $gray-600;
+  margin-bottom: $space-md;
+}
+
+:global(a) {
+  color: $primary-500;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary-600;
+  }
+}
+
+// Lists
+:global(ul),
+:global(ol) {
+  margin-left: $space-lg;
+  margin-bottom: $space-md;
+}
+
+:global(li) {
+  margin-bottom: $space-sm;
+}
+
+// Code
+:global(code),
+:global(pre) {
+  background-color: $gray-100;
+  border-radius: $radius-sm;
+  padding: $space-xs $space-sm;
+  font-family: "Monaco", "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+:global(pre) {
+  padding: $space-md;
+  overflow-x: auto;
+}
+
+// Buttons Default
+:global(button) {
+  font-family: $font-primary;
+}
+
+// Form Elements
+:global(input),
+:global(textarea),
+:global(select) {
+  @include input-base;
+}
+
+:global(textarea) {
+  resize: vertical;
+  min-height: 120px;
+}
+
+:global(label) {
+  display: block;
+  margin-bottom: $space-sm;
+  font-weight: 600;
+  color: $gray-800;
+}
+
+// Tables
+:global(table) {
+  @include table-base;
+}
+
+// Utilities
+:global(.container) {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+}
+
+:global(.text-center) {
+  text-align: center;
+}
+
+:global(.text-right) {
+  text-align: right;
+}
+
+:global(.text-left) {
+  text-align: left;
+}
+
+:global(.text-muted) {
+  color: $gray-500;
+}
+
+:global(.text-danger) {
+  color: $error-600;
+}
+
+:global(.text-success) {
+  color: $success-600;
+}
+
+:global(.text-warning) {
+  color: $warning-600;
+}
+
+:global(.text-info) {
+  color: $info-600;
+}
+
+:global(.mb-1) {
+  margin-bottom: $space-sm;
+}
+
+:global(.mb-2) {
+  margin-bottom: $space-md;
+}
+
+:global(.mb-3) {
+  margin-bottom: $space-lg;
+}
+
+:global(.mt-1) {
+  margin-top: $space-sm;
+}
+
+:global(.mt-2) {
+  margin-top: $space-md;
+}
+
+:global(.mt-3) {
+  margin-top: $space-lg;
 }

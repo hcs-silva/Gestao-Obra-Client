@@ -2,24 +2,22 @@
 @use "../sass/mixins" as *;
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 200px;
+  @include flex-between;
+  background: white;
+  padding: $space-xl $space-lg;
+  border-radius: $radius-lg;
+  
+  box-shadow: $shadow-md;
 
   h1 {
     font-family: $font-primary;
-    color: $blue-700;
-    font-weight: 700;
-    font-size: 3rem;
+    @include heading($fs-3xl, 700, $primary-500);
   }
 }
 
-img {
-  width: 150px;
-  height: 150px;
-  margin: 20px;
-}
-.hidden {
-  display: none;
+.logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: $radius-md;
 }

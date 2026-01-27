@@ -1,0 +1,198 @@
+@use "../sass/variables" as *;
+@use "../sass/mixins" as *;
+
+.dashboardContainer {
+  display: flex;
+  min-height: 100vh;
+  background: $bg-light;
+  margin: 15px;
+}
+
+.sidebar {
+  width: 250px;
+  background: $gray-900;
+  color: white;
+  padding: $space-lg 0;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: $shadow-lg;
+
+  .logo {
+    @include heading($fs-2xl, 700, $primary-400);
+    padding: 0 $space-lg;
+    margin-bottom: $space-2xl;
+    text-align: center;
+  }
+
+  .menu {
+    list-style: none;
+  }
+
+  .menuItem {
+    @include nav-item;
+    padding: $space-md $space-lg;
+    margin: $space-xs $space-sm;
+    border-radius: $radius-md;
+
+    &:hover {
+      background: $gray-800;
+    }
+
+    &.active {
+      background: $primary-500;
+      border-left: 4px solid $primary-400;
+    }
+  }
+}
+
+.mainContent {
+  margin-left: 250px;
+  flex: 1;
+  padding: $space-lg;
+  overflow-y: auto;
+}
+
+.topbar {
+  background: white;
+  padding: $space-lg $space-xl;
+  border-radius: $radius-lg;
+  margin-bottom: $space-lg;
+  @include flex-between;
+  box-shadow: $shadow-md;
+
+  h1 {
+    @include heading($fs-2xl, 700, $gray-900);
+  }
+
+  .actions {
+    display: flex;
+    gap: $space-lg;
+    align-items: center;
+  }
+
+  .upgradeBadge {
+    @include badge($warning-50, $warning-600);
+    padding: $space-sm $space-lg;
+    font-size: $fs-small;
+    cursor: pointer;
+  }
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $space-lg;
+  margin-bottom: $space-lg;
+}
+
+.card {
+  @include card;
+
+  .cardHeader {
+    @include flex-between;
+    margin-bottom: $space-md;
+
+    h3 {
+      @include heading($fs-lg, 600, $gray-900);
+    }
+
+    .icon {
+      font-size: $fs-2xl;
+    }
+  }
+
+  .kpiValue {
+    @include heading($fs-4xl, 800, $primary-500);
+    margin: $space-md 0;
+  }
+
+  .kpiLabel {
+    color: $gray-500;
+    font-size: $fs-small;
+  }
+}
+
+.progressBar {
+  background: $gray-200;
+  border-radius: $radius-lg;
+  height: 10px;
+  overflow: hidden;
+  margin: $space-md 0;
+
+  .progressFill {
+    background: linear-gradient(90deg, $secondary-500 0%, $secondary-600 100%);
+    height: 100%;
+    border-radius: $radius-lg;
+    transition: width $transition-slow;
+  }
+}
+
+.alertItem {
+  @include flex-between;
+  padding: $space-md;
+  background: $error-50;
+  border-left: 4px solid $error-500;
+  border-radius: $radius-md;
+  margin-bottom: $space-sm;
+  color: $error-600;
+
+  &.success {
+    background: $success-50;
+    border-left-color: $success-500;
+    color: $success-600;
+  }
+
+  &.warning {
+    background: $warning-50;
+    border-left-color: $warning-500;
+    color: $warning-600;
+  }
+
+  &.info {
+    background: $info-50;
+    border-left-color: $info-500;
+    color: $info-600;
+  }
+}
+
+.uploadZone {
+  border: 2px dashed $gray-300;
+  border-radius: $radius-lg;
+  padding: $space-2xl;
+  text-align: center;
+  cursor: pointer;
+  transition: all $transition-base;
+  background: white;
+
+  &:hover {
+    border-color: $primary-500;
+    background: $primary-50;
+  }
+
+  .icon {
+    font-size: $fs-4xl;
+    display: block;
+    margin-bottom: $space-md;
+  }
+
+  p {
+    color: $gray-600;
+  }
+}
+
+.statusBadge {
+  @include badge($gray-100, $gray-600);
+
+  &.active {
+    @include badge($success-50, $success-600);
+  }
+
+  &.inactive {
+    @include badge($error-50, $error-600);
+  }
+
+  &.pending {
+    @include badge($warning-50, $warning-600);
+  }
+}

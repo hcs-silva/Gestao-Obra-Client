@@ -1,0 +1,91 @@
+@use "../sass/variables" as *;
+@use "../sass/mixins" as *;
+
+.navbar {
+  width: 220px;
+  background: $gray-900;
+  color: white;
+  
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  gap: $space-md;
+  min-height: 100%;
+  flex-shrink: 0;
+  overflow-y: auto;
+
+  h1 {
+    @include heading($fs-xl, 700, white);
+    margin-bottom: $space-md;
+  }
+
+  img {
+    max-height: 150px;
+    max-width: 150px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  &.loginButton button {
+    @include button-primary;
+    width: 100%;
+    margin: $space-sm 0;
+  }
+
+  &.logoutButton button {
+    @include button-danger;
+    width: 100%;
+    margin: $space-sm 0;
+  }
+
+  .logo {
+    @include heading($fs-2xl, 700, $primary-500);
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+  }
+
+  .actions {
+    display: flex;
+    gap: $space-lg;
+    align-items: center;
+
+    button {
+      @include button-primary;
+      padding: $space-sm $space-lg;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    background: white;
+    border-radius: $radius-md;
+    padding: $space-md;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    box-shadow: $shadow-lg;
+
+    a {
+      display: block;
+      padding: $space-md;
+      color: $gray-600;
+
+      &:hover {
+        background: $primary-50;
+        color: $primary-500;
+      }
+    }
+  }
+}

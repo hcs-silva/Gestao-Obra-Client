@@ -1,21 +1,50 @@
+@use "../sass/variables" as *;
+@use "../sass/mixins" as *;
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    font-size: 2rem;
-    color: #333;
+  @include heading();
 }
 
+// Main layout container
 .layout {
-    display:flex;
-    flex-direction: column;
+  @include flex-col;
+  min-height: 100vh;
+  background: $bg-light;
 }
 
+// Main content area (houses navbar + routes)
 .main {
-    display: flex;
-    border: 1px solid #ccc;
-    height: 70vh;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background: $bg-light;
+  gap: 0;
+  padding: 0;
+}
+
+// Routes content area (right side of navbar)
+.content {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  padding: $space-xl;
+}
+
+// Container utility
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+  width: 100%;
+}
+
+// Utility class for hiding elements
+.hidden {
+  display: none;
 }

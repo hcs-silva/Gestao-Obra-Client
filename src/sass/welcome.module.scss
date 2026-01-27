@@ -1,14 +1,50 @@
 @use "../sass/variables" as *;
 @use "../sass/mixins" as *;
 
-.welcomePage{
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center; 
-    h1{
-        color: $blue-700;
-        font-weight: 800;
-    }   
+.container {
+  @include flex-center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $primary-500 0%, $accent-500 100%);
+  gap: $space-2xl;
+  padding: $space-lg;
+}
+
+.welcomePage {
+  width: 100%;
+  
+  @include flex-col;
+  @include card-elevated;
+  padding: $space-2xl;
+  gap: $space-lg;
+
+  h1 {
+    @include heading($fs-3xl, 800, $primary-500);
+    text-align: center;
+  }
+
+  p {
+    color: $gray-600;
+    text-align: center;
+    font-size: $fs-lg;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: $space-lg;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  @include button-primary;
+  padding: $space-md $space-2xl;
+  font-size: $fs-base;
+}
+
+.btnSecondary {
+  @include button-secondary;
+  padding: $space-md $space-2xl;
+  font-size: $fs-base;
 }

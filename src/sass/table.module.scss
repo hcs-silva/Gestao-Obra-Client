@@ -1,0 +1,174 @@
+@use "../sass/variables" as *;
+@use "../sass/mixins" as *;
+
+.tableWrapper {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-md;
+  overflow-x: auto;
+}
+
+.tableContainer {
+  @include table-base;
+
+  thead {
+    th {
+      background: $primary-50;
+      color: $primary-700;
+      font-weight: 600;
+      padding: $space-md;
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background: $gray-50;
+      }
+
+      td {
+        padding: $space-md;
+        color: $gray-700;
+      }
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+.actionCell {
+  display: flex;
+  gap: $space-sm;
+  justify-content: center;
+}
+
+.editBtn,
+.deleteBtn,
+.viewBtn {
+  @include button-base;
+  padding: $space-xs $space-md;
+  font-size: $fs-small;
+  border-radius: $radius-md;
+}
+
+.editBtn {
+  background: $primary-500;
+  color: white;
+
+  &:hover {
+    background: $primary-600;
+  }
+}
+
+.deleteBtn {
+  background: $error-500;
+  color: white;
+
+  &:hover {
+    background: $error-600;
+  }
+}
+
+.viewBtn {
+  background: $info-500;
+  color: white;
+
+  &:hover {
+    background: $info-600;
+  }
+}
+
+.pagination {
+  display: flex;
+  gap: $space-sm;
+  justify-content: center;
+  margin-top: $space-lg;
+  padding-top: $space-lg;
+  border-top: 1px solid $gray-200;
+
+  button {
+    @include button-base;
+    padding: $space-sm $space-md;
+    background: $gray-100;
+    color: $gray-700;
+
+    &:hover:not(:disabled) {
+      background: $primary-500;
+      color: white;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.active {
+      background: $primary-500;
+      color: white;
+    }
+  }
+}
+
+.emptyState {
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-lg;
+  padding: $space-2xl;
+  color: $gray-500;
+
+  .icon {
+    font-size: $fs-4xl;
+  }
+
+  p {
+    font-size: $fs-lg;
+    color: $gray-500;
+  }
+
+  button {
+    @include button-primary;
+  }
+}
+
+.loadingState {
+  @include flex-center;
+  padding: $space-2xl;
+  color: $gray-400;
+
+  .spinner {
+    @include flex-center;
+    gap: $space-md;
+
+    span {
+      width: 8px;
+      height: 8px;
+      background: $primary-500;
+      border-radius: 50%;
+      animation: bounce 1.4s infinite;
+
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}

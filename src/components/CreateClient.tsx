@@ -1,3 +1,4 @@
+import styles from "../sass/createclient.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -6,14 +7,15 @@ import { toast } from "react-toastify";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
 const CreateClient = () => {
   const nav = useNavigate();
-  
+
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [clientName, setClientName] = useState("");
   const [adminUsername, setAdminUsername] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
 
-  const DEFAULT_CLIENT_LOGO = "https://res.cloudinary.com/dzdrwiugn/image/upload/v1767800594/defaultUser_wqi7iy.jpg";
+  const DEFAULT_CLIENT_LOGO =
+    "https://res.cloudinary.com/dzdrwiugn/image/upload/v1767800594/defaultUser_wqi7iy.jpg";
 
   async function handleCreateClient(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,7 +48,7 @@ const CreateClient = () => {
         },
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       toast.success("Client created successfully!");
@@ -54,7 +56,7 @@ const CreateClient = () => {
       // Reset form
       setClientName("");
       setAdminUsername("");
-      setAdminPassword("");      
+      setAdminPassword("");
       setImageFile(null);
 
       // Navigate back after a short delay
@@ -90,7 +92,7 @@ const CreateClient = () => {
     try {
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dzdrwiugn/image/upload",
-        formData
+        formData,
       );
 
       return response.data.secure_url;
@@ -105,9 +107,9 @@ const CreateClient = () => {
   };
 
   return (
-    <div>
+    <div className={styles.createClientWrapper}>
       <h1>Create Client</h1>
-      <form onSubmit={handleCreateClient}>
+      <form className={styles.form} onSubmit={handleCreateClient}>
         <label>
           Client Name:
           <input
@@ -124,7 +126,6 @@ const CreateClient = () => {
             onChange={handleImageChange}
             className="border-cream-300 text-cream-700"
           />
-          
         </label>
         <label>
           Administrator Username:
@@ -142,11 +143,12 @@ const CreateClient = () => {
             onChange={(e) => setAdminPassword(e.target.value)}
           />
         </label>
-        <button type="submit" disabled={uploading}>
+        <button type="submit" disabled={uploading} className={styles.submitBtn}>
           {uploading ? "Uploading..." : "Create Client"}
         </button>
+        <button onClick={() => nav("/masterdash")} className={styles.cancelBtn}>Back</button>
       </form>
-      <button onClick={() => nav("/masterdash")}>Back</button>
+      
     </div>
   );
 };

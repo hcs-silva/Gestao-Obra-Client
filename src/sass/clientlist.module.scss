@@ -1,26 +1,67 @@
 @use "../sass/variables" as *;
 @use "../sass/mixins" as *;
 
+.wrapper {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-md;
+}
+
+.header {
+  @include flex-between;
+  margin-bottom: $space-lg;
+
+  h2 {
+    @include heading($fs-2xl, 700, $gray-900);
+  }
+}
+
 .table {
+  @include table-base;
   width: 100%;
-  border-collapse: collapse;
-  margin: 20px;
-  
 
   th {
-    border: 1px solid $blue-500;      
-    text-align: center;
-    padding: 15px;
-    color: white;
+    background: $primary-50;
+    color: $primary-700;
+    font-weight: 600;
   }
 
   td {
-    border: 1px solid $blue-500;
-    padding: 15px;
-    text-align: center;
+    color: $gray-700;
   }
 
-  th {
-    background-color: $blue-700;
+  tr:hover {
+    background: $gray-50;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: $space-sm;
+  justify-content: center;
+}
+
+.editBtn {
+  @include button-primary;
+  padding: $space-sm $space-md;
+  font-size: $fs-small;
+}
+
+.deleteBtn {
+  @include button-danger;
+  padding: $space-sm $space-md;
+  font-size: $fs-small;
+}
+
+.emptyState {
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-lg;
+  padding: $space-2xl;
+  color: $gray-500;
+
+  p {
+    font-size: $fs-lg;
   }
 }

@@ -6,18 +6,43 @@
 
 h1 {
   font-size: 2rem;
-  color: #333;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
 }
 
 .layout {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background: #f9fafb;
 }
 
 .main {
   display: flex;
-  border: 1px solid #ccc;
-  height: 70vh;
+  flex: 1;
+  flex-direction: row;
+  background: #f9fafb;
+  gap: 0;
+  padding: 0;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=common.module.css.map */

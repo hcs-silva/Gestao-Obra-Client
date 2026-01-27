@@ -1,36 +1,57 @@
 @use "../sass/variables" as *;
 @use "../sass/mixins" as *;
 
+.container {
+  @include flex-center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $primary-500 0%, $accent-500 100%);
+  padding: $space-lg;
+}
+
 .loginpage {
-  width: 90%;
+  width: 100%;
+ 
   @include flex-center;
   flex-direction: column;
-  h1{
-    font-size: 4rem;
-    color: $blue-700;
-    margin: 10px;
+
+  h1 {
+    @include heading($fs-3xl, 700, $primary-500);
+    margin-bottom: $space-lg;
   }
+
   form {
-    @include flex-center;
-    flex-direction: column;
-    width: auto;
-    border: 1px solid $blue-700;
-    border-radius: 5px;
-    box-shadow: 4px 4px 5px 0px rgba(15, 51, 64, 0.75);
-    -webkit-box-shadow: 4px 4px 5px 0px rgba(15, 51, 64, 0.75);
-    -moz-box-shadow: 4px 4px 5px 0px rgba(15, 51, 64, 0.75);
+    @include flex-col;
+    @include card-elevated;
+    width: 100%;
+    max-width: 400px;
+    padding: $space-2xl;
+    gap: $space-md;
+
     label {
-      margin: 5px;
-      font-family: $font-primary;
-      font-size: $fs-large;
-      font-weight: 700;
-      input {
-        margin: 5px;
-      }
+      @include heading($fs-base, 600, $gray-900);
+      text-align: left;
     }
+
+    input {
+      @include input-base;
+    }
+
     .button {
-      @include button($blue-700);
-      margin: 5px;
+      @include button-primary;
+      width: 100%;
+      padding: $space-md;
+      margin-top: $space-md;
+    }
+
+    .link {
+      text-align: center;
+      color: $gray-600;
+      font-size: $fs-small;
+
+      a {
+        color: $primary-500;
+        font-weight: 600;
+      }
     }
   }
 }

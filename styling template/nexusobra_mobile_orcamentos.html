@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusObra Mobile - Orçamentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f3f4f6;
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .mobile-header {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .header-top h1 {
+            font-size: 1.5rem;
+            color: #1f2937;
+        }
+
+        .search-bar {
+            display: flex;
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-bar input {
+            border: none;
+            background: none;
+            flex: 1;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4b5563;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chip.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .orcamentos-list {
+            padding: 0 1rem 5rem;
+        }
+
+        .orcamento-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .orcamento-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .orcamento-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .orcamento-id {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .status-badge-mobile {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .status-badge-mobile.active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-badge-mobile.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-badge-mobile.completed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .orcamento-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 0.5rem 0;
+        }
+
+        .progress-section {
+            margin: 1rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar-mobile {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill-mobile {
+            background: linear-gradient(90deg, #10b981, #059669);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        .orcamento-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-mobile {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-mobile.primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-mobile.secondary {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #10b981;
+            color: white;
+            font-size: 2rem;
+            border: none;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 50;
+        }
+
+        .fab:active {
+            transform: scale(0.95);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 430px;
+            margin: 0 auto;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.75rem 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #2563eb;
+        }
+
+        .nav-item span {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-header">
+        <div class="header-top">
+            <h1>Orçamentos</h1>
+            <div style="font-size: 1.5rem; cursor: pointer;">⚙️</div>
+        </div>
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Pesquisar orçamentos...">
+        </div>
+    </div>
+
+    <div class="filter-chips">
+        <div class="chip active">Todos</div>
+        <div class="chip">Ativos</div>
+        <div class="chip">Pendentes</div>
+        <div class="chip">Concluídos</div>
+    </div>
+
+    <div class="orcamentos-list">
+        <div class="orcamento-card">
+            <div class="orcamento-header">
+                <div>
+                    <div class="orcamento-title">Fundações</div>
+                    <div class="orcamento-id">#ORC-2024-001</div>
+                </div>
+                <div class="status-badge-mobile active">Ativo</div>
+            </div>
+            <div class="orcamento-value">€45,000</div>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Materiais executados</span>
+                    <span><strong>75%</strong></span>
+                </div>
+                <div class="progress-bar-mobile">
+                    <div class="progress-fill-mobile" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="orcamento-actions">
+                <button class="btn-mobile primary">Ver Detalhes</button>
+                <button class="btn-mobile secondary">⋯</button>
+            </div>
+        </div>
+
+        <div class="orcamento-card">
+            <div class="orcamento-header">
+                <div>
+                    <div class="orcamento-title">Acabamentos</div>
+                    <div class="orcamento-id">#ORC-2024-002</div>
+                </div>
+                <div class="status-badge-mobile pending">Pendente</div>
+            </div>
+            <div class="orcamento-value">€28,500</div>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Materiais executados</span>
+                    <span><strong>15%</strong></span>
+                </div>
+                <div class="progress-bar-mobile">
+                    <div class="progress-fill-mobile" style="width: 15%;"></div>
+                </div>
+            </div>
+            <div class="orcamento-actions">
+                <button class="btn-mobile primary">Ver Detalhes</button>
+                <button class="btn-mobile secondary">⋯</button>
+            </div>
+        </div>
+
+        <div class="orcamento-card">
+            <div class="orcamento-header">
+                <div>
+                    <div class="orcamento-title">Estrutura</div>
+                    <div class="orcamento-id">#ORC-2024-003</div>
+                </div>
+                <div class="status-badge-mobile completed">Concluído</div>
+            </div>
+            <div class="orcamento-value">€67,200</div>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Materiais executados</span>
+                    <span><strong>100%</strong></span>
+                </div>
+                <div class="progress-bar-mobile">
+                    <div class="progress-fill-mobile" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="orcamento-actions">
+                <button class="btn-mobile primary">Ver Detalhes</button>
+                <button class="btn-mobile secondary">⋯</button>
+            </div>
+        </div>
+
+        <div class="orcamento-card">
+            <div class="orcamento-header">
+                <div>
+                    <div class="orcamento-title">Instalações Elétricas</div>
+                    <div class="orcamento-id">#ORC-2024-004</div>
+                </div>
+                <div class="status-badge-mobile active">Ativo</div>
+            </div>
+            <div class="orcamento-value">€19,800</div>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Materiais executados</span>
+                    <span><strong>45%</strong></span>
+                </div>
+                <div class="progress-bar-mobile">
+                    <div class="progress-fill-mobile" style="width: 45%;"></div>
+                </div>
+            </div>
+            <div class="orcamento-actions">
+                <button class="btn-mobile primary">Ver Detalhes</button>
+                <button class="btn-mobile secondary">⋯</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="fab">+</button>
+
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <span>🏗️</span>
+            <div>Obras</div>
+        </div>
+        <div class="nav-item active">
+            <span>💰</span>
+            <div>Orçamentos</div>
+        </div>
+        <div class="nav-item">
+            <span>📦</span>
+            <div>Materiais</div>
+        </div>
+        <div class="nav-item">
+            <span>📊</span>
+            <div>Dashboard</div>
+        </div>
+    </div>
+</body>
+</html>
