@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/loginpage.module.css";
+import commonStyles from "../styles/common.module.css";
 
 import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
@@ -37,7 +38,7 @@ const LoginPage = () => {
   return (
     <div className={styles.loginpage}>
       <h1 className={styles.h1}>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={commonStyles.form}>
         <label>
           Username:
           <input
@@ -56,7 +57,7 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={commonStyles.button}>
           Login
         </button>
       </form>

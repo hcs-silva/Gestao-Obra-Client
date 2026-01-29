@@ -5,6 +5,7 @@ import PasswordUpdatePage from "./Pages/PasswordUpdatePage";
 import WelcomePage from "./Pages/WelcomePage";
 import ClientList from "./components/ClientList";
 import CreateClient from "./components/CreateClient";
+import EditClient from "./components/EditClient";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
@@ -29,6 +30,7 @@ function App() {
             <Route path="/resetpassword/:userId" element={<PasswordUpdatePage/>}></Route>
             <Route path="/addclient" element={<CreateClient/>}></Route>
             <Route path="/allclients" element ={<ClientList/>}></Route> 
+            <Route path="/editclient/:clientId" element ={<EditClient/>}></Route>
           </Routes>
         </div>
         <Footer />

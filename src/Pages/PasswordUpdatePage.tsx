@@ -1,4 +1,5 @@
 import styles from "../styles/passwordupdatepage.module.css";
+import commonStyles from "../styles/common.module.css";
 import axios from "axios";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -61,7 +62,7 @@ const PasswordUpdatePage = () => {
     <div className={styles.passwordUpdatePage}>
       <h1>Password Update Page</h1>
 
-      <form onSubmit={handlePasswordChange}>
+      <form onSubmit={handlePasswordChange} className={commonStyles.form}>
         <label>
           New Password:
           <input
@@ -80,7 +81,7 @@ const PasswordUpdatePage = () => {
             onChange={(e) => setConfirmNewPassword(e.target.value)}
           />
         </label>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={commonStyles.button}>
           Submit
         </button>
       </form>

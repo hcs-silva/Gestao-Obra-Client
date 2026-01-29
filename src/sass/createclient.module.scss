@@ -10,7 +10,6 @@
   box-shadow: $shadow-md;
   margin-bottom: $space-lg;
   width: 100%;
-  
 }
 
 .header {
@@ -19,60 +18,8 @@
   padding-bottom: $space-lg;
   border-bottom: 2px solid $gray-200;
 }
-  h1 {
-    @include heading($fs-2xl, 700, $primary-500);
-  }
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: $space-lg;
-  max-width: 400px  ;
-
-  .formGroup {
-    display: flex;
-    flex-direction: column;
-    gap: $space-sm;
-  }
-
-  label {
-    @include heading($fs-base, 600, $gray-900);
-  }
-
-  input,
-  select,
-  textarea {
-    @include input-base;
-  }
-
-  textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  .formRow {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: $space-lg;
-  }
-
-  .actions {
-    display: flex;
-    gap: $space-lg;
-    justify-content: flex-end;
-    padding-top: $space-lg;
-    border-top: 1px solid $gray-200;
-  }
-
-  .submitBtn {
-    @include button-primary;
-    padding: $space-md $space-2xl;
-  }
-
-  .cancelBtn {
-    @include button-secondary;
-    padding: $space-md $space-2xl;
-  }
+.title {
+  @include heading($fs-3xl, 700, $primary-500);
 }
 
 .successMessage {

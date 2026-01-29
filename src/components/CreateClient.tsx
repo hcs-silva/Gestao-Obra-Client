@@ -1,4 +1,5 @@
 import styles from "../sass/createclient.module.scss";
+import commonStyles from "../styles/common.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -108,8 +109,8 @@ const CreateClient = () => {
 
   return (
     <div className={styles.createClientWrapper}>
-      <h1>Create Client</h1>
-      <form className={styles.form} onSubmit={handleCreateClient}>
+      <h1 className={styles.title}>Create Client</h1>
+      <form className={commonStyles.form} onSubmit={handleCreateClient}>
         <label>
           Client Name:
           <input
@@ -143,12 +144,22 @@ const CreateClient = () => {
             onChange={(e) => setAdminPassword(e.target.value)}
           />
         </label>
-        <button type="submit" disabled={uploading} className={styles.submitBtn}>
-          {uploading ? "Uploading..." : "Create Client"}
-        </button>
-        <button onClick={() => nav("/masterdash")} className={styles.cancelBtn}>Back</button>
+        <div className={commonStyles.actions}>
+          <button
+            onClick={() => nav("/masterdash")}
+            className={commonStyles.cancelBtn}
+          >
+            Back
+          </button>
+          <button
+            type="submit"
+            disabled={uploading}
+            className={commonStyles.submitBtn}
+          >
+            {uploading ? "Uploading..." : "Create Client"}
+          </button>
+        </div>
       </form>
-      
     </div>
   );
 };

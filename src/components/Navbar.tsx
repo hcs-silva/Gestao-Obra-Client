@@ -45,6 +45,7 @@ const Navbar = () => {
 
   // Determine if image should be hidden
   const shouldHideImage = !isLoggedIn || user?.role === "masterAdmin";
+  const isMasterAdmin = !isLoggedIn || user?.role === "masterAdmin";
 
   return (
     <div
@@ -55,7 +56,7 @@ const Navbar = () => {
         alt="Client Logo"
         className={`${styles.logo} ${shouldHideImage ? styles.hidden : ""}`}
       />
-      <span> Client ID: {user?.clientId}</span>
+      {isMasterAdmin ?  null : <span> Client ID: {user?.clientId}</span>}
       {items.map((it) =>
         "to" in it ? (
           <button key={it.label} onClick={() => nav(it.to)}>

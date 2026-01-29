@@ -1,11 +1,15 @@
 @use "../sass/variables" as *;
 @use "../sass/mixins" as *;
 
-.wrapper {
+.clientListWrapper {
+  @include flex-center;
+  flex-direction: column;
   background: white;
   border-radius: $radius-lg;
   padding: $space-lg;
   box-shadow: $shadow-md;
+  margin-bottom: $space-lg;
+  width: 100%;
 }
 
 .header {
@@ -15,6 +19,10 @@
   h2 {
     @include heading($fs-2xl, 700, $gray-900);
   }
+}
+
+.title {
+  @include heading($fs-3xl, 700, $primary-500);
 }
 
 .table {

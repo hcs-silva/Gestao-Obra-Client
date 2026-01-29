@@ -23,4 +23,5 @@ export interface Client {
   clientName: string;
   clientEmail: string;
   clientPhone: string;
+  subStatus: boolean;
 }

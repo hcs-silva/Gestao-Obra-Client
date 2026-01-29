@@ -48,3 +48,90 @@ h1 {
 .hidden {
   display: none;
 }
+
+// ============================================================================
+// CENTRALIZED FORM STYLING
+// ============================================================================
+
+// Default form styling - basic forms with card elevation
+form {
+  @include flex-col;
+  @include card-elevated;
+  width: 100%;
+  max-width: 400px;
+  padding: $space-2xl;
+  gap: $space-md;
+
+  label {
+    @include heading($fs-base, 600, $gray-900);
+    text-align: left;
+  }
+
+  input,
+  select,
+  textarea {
+    @include input-base;
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .button {
+    @include button-primary;
+    width: 100%;
+    padding: $space-md;
+    margin-top: $space-md;
+  }
+
+  .link {
+    text-align: center;
+    color: $gray-600;
+    font-size: $fs-small;
+
+    a {
+      color: $primary-500;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Form group for organizing fields
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+// Form row for multi-column layouts
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $space-lg;
+}
+
+// Form actions for button containers
+.actions {
+  display: flex;
+  gap: $space-lg;
+  justify-content: flex-end;
+  padding-top: $space-lg;
+  border-top: 1px solid $gray-200;
+}
+
+// Primary form button (submit button)
+.submitBtn {
+  @include button-primary;
+  padding: $space-md $space-2xl;
+}
+
+// Secondary form button (cancel/back button)
+.cancelBtn {
+  @include button-secondary;
+  padding: $space-md $space-2xl;
+}

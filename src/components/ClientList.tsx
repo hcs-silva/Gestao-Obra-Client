@@ -1,8 +1,10 @@
+import styles from "../styles/clientlist.module.css";
+import commonStyles from "../styles/common.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import styles from "../styles/clientlist.module.css";
+
 import type { Client } from "../types/auth";
 
 const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:5005";
@@ -18,21 +20,22 @@ const ClientList = () => {
       })
       .then((response) => {
         // Handle the response data here
+        console.log("Fetched clients:", response.data);
         setClients(response.data);
       })
       .catch((error) => {
         console.error("Error fetching clients:", error);
       });
   }, []);
-  // ...existing code...
+
   return (
-    <div>
-      <h1>Client List</h1>
-      <form>
+    <div className={styles.clientListWrapper}>
+      <h1 className={styles.title}>Client List</h1>
+      <form className={commonStyles.form}>
         <label>
           Search Client:
           <input type="text" />
-          <button type="submit">Search</button>
+          <button type="submit" className={commonStyles.button}>Search</button>
         </label>
       </form>
       <table className={styles.table}>
@@ -42,6 +45,8 @@ const ClientList = () => {
             <th>Client Name</th>
             <th>Client Email</th>
             <th>Client Phone</th>
+            <th>Subscription Status</th>
+            <th>Options</th>
           </tr>
         </thead>
         <tbody>
@@ -51,11 +56,14 @@ const ClientList = () => {
               <td>{client.clientName}</td>
               <td>{client.clientEmail}</td>
               <td>{client.clientPhone}</td>
+              <td>{client.subStatus ? 'Ativo' : 'Inativo'}</td>
+              <td><button className={styles.editBtn} onClick={()=> {nav(`/editclient/${client._id}`)}}>Edit</button></td>
+              
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={() => nav("/masterdash")}>Back</button>
+      <button onClick={() => nav("/masterdash")} className={commonStyles.cancelBtn}>Back</button>
     </div>
   );
 };
