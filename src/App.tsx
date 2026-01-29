@@ -11,10 +11,31 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import styles from "./styles/common.module.css";
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
+  const { logout } = useAuth();
 
-  
+  // Logout on window close
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      // Only logout if user is logged in
+      const token = localStorage.getItem("token");
+      if (token) {
+        logout();
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("unload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("unload", handleBeforeUnload);
+    };
+  }, [logout]);
+
   return (
     <>
       <div className={styles.layout}>
