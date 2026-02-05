@@ -9,10 +9,13 @@ import EditClient from "./components/EditClient";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 import styles from "./styles/common.module.css";
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
+import BuildList from "./components/BuildList";
+import QuotationList from "./components/QuotationList";
 
 function App() {
   const { logout } = useAuth();
@@ -46,20 +49,80 @@ function App() {
           <Routes>
             <Route path="/" element={<WelcomePage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
+
+            {/* Protected Routes - Only authenticated users */}
             <Route
               path="/dashboard/:clientId"
-              element={<DashboardPage />}
+              element={
+                <ProtectedRoute requireClientMatch={true}>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
             ></Route>
-            <Route path="/masterdash" element={<MasterDashboard />}></Route>
+
+            {/* Master Admin Only Routes */}
             <Route
-              path="/resetpassword/:userId"
-              element={<PasswordUpdatePage />}
+              path="/masterdash"
+              element={
+                <ProtectedRoute requiredRoles={["masterAdmin"]}>
+                  <MasterDashboard />
+                </ProtectedRoute>
+              }
             ></Route>
-            <Route path="/addclient" element={<CreateClient />}></Route>
-            <Route path="/allclients" element={<ClientList />}></Route>
+
+            <Route
+              path="/allclients"
+              element={
+                <ProtectedRoute requiredRoles={["masterAdmin"]}>
+                  <ClientList />
+                </ProtectedRoute>
+              }
+            ></Route>
+
+            <Route
+              path="/addclient"
+              element={
+                <ProtectedRoute requiredRoles={["masterAdmin"]}>
+                  <CreateClient />
+                </ProtectedRoute>
+              }
+            ></Route>
+
             <Route
               path="/editclient/:clientId"
-              element={<EditClient />}
+              element={
+                <ProtectedRoute requireClientMatch={true}>
+                  <EditClient />
+                </ProtectedRoute>
+              }
+              ></Route>
+
+            {/* Client-based Protected Routes */}
+            <Route
+              path="/builds"
+              element={
+                <ProtectedRoute>
+                  <BuildList />
+                </ProtectedRoute>
+              }
+            ></Route>
+
+            <Route
+              path="/quotations"
+              element={
+                <ProtectedRoute>
+                  <QuotationList />
+                </ProtectedRoute>
+              }
+            ></Route>
+
+            <Route
+              path="/resetpassword/:userId"
+              element={
+                <ProtectedRoute>
+                  <PasswordUpdatePage />
+                </ProtectedRoute>
+              }
             ></Route>
           </Routes>
         </div>

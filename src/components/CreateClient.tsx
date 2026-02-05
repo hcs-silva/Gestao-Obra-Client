@@ -43,7 +43,7 @@ const CreateClient = () => {
         `${BACKEND_URL}/clients/createClient`,
         {
           clientName: clientName.trim(),
-          adminUsername: adminUsername.trim().toLowerCase(),
+          adminUsername: adminUsername.trim(),
           adminPassword: adminPassword,
           clientLogo: finalLogoUrl,
         },
