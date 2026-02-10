@@ -24,9 +24,9 @@ export const roleConfig: RoleConfig = {
       { id: 'logout', label: 'Logout', onClick: 'logout' },
     ],
     Admin: [
-      { id: 'admin-home', label: 'Home', to: '/dashboard' },
-      {id: 'team-management', label: 'Team Management', to: '/allclients' },   
-      { id: 'team', label: 'Team', to: '/team' },
+      { id: 'admin-home', label: 'Home', to: '/dashboard/:clientId' },
+      { id: 'builds', label: 'Builds', to: '/builds' },
+      { id: 'quotations', label: 'Quotations', to: '/quotations' },
       { id: 'logout', label: 'Logout', onClick: 'logout' },
     ],
     user: [

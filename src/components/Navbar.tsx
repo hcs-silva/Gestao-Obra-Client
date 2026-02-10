@@ -7,7 +7,6 @@ import type { UserRole } from "../config/roleConfig";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 
-
 const Navbar = () => {
   const { isLoggedIn, logout, user } = useAuth();
   const nav = useNavigate();
@@ -26,6 +25,14 @@ const Navbar = () => {
   const visibleItems = isLoggedIn
     ? items
     : items.filter((it) => !("onClick" in it && it.onClick === "login"));
+
+  const resolvePath = (to: string) => {
+    if (to.includes(":clientId") && user?.clientId) {
+      return to.replace(":clientId", user.clientId);
+    }
+
+    return to;
+  };
 
   useEffect(() => {
     if (!isLoggedIn || !user || !user.clientId) {
@@ -60,10 +67,10 @@ const Navbar = () => {
         alt="Client Logo"
         className={`${styles.logo} ${shouldHideImage ? styles.hidden : ""}`}
       />
-      {isMasterAdmin ?  null : <span> Client ID: {user?.clientId}</span>}
+      {isMasterAdmin ? null : <span> Client ID: {user?.clientId}</span>}
       {visibleItems.map((it) =>
         "to" in it ? (
-          <button key={it.label} onClick={() => nav(it.to)}>
+          <button key={it.label} onClick={() => nav(resolvePath(it.to))}>
             {it.label}
           </button>
         ) : (
