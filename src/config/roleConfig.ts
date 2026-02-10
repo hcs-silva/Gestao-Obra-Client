@@ -20,6 +20,7 @@ export const roleConfig: RoleConfig = {
       { id: 'master-dashboard', label: 'Master Dashboard', to: '/masterdash' },
       { id: 'clients', label: 'Client List', to: '/allclients' },
       { id: 'add-client', label: 'Add Client', to: '/addclient' },
+      { id: 'obras', label: 'Obras', to: '/allobras' },
       { id: 'settings', label: 'Settings', to: '/settings' },
       { id: 'logout', label: 'Logout', onClick: 'logout' },
     ],
@@ -27,6 +28,7 @@ export const roleConfig: RoleConfig = {
       { id: 'admin-home', label: 'Home', to: '/dashboard' },
       {id: 'team-management', label: 'Team Management', to: '/allclients' },   
       { id: 'team', label: 'Team', to: '/team' },
+      { id: 'obras', label: 'Obras', to: '/allobras' },
       { id: 'logout', label: 'Logout', onClick: 'logout' },
     ],
     user: [
@@ -45,6 +47,10 @@ export const roleConfig: RoleConfig = {
     '/clients': { allowedRoles: ['masterAdmin'] },
     '/addclient': { allowedRoles: ['masterAdmin'] },
     '/settings': { allowedRoles: ['masterAdmin'] },
+    '/allobras': { allowedRoles: ['masterAdmin', 'Admin'] },
+    '/addobra': { allowedRoles: ['masterAdmin', 'Admin'] },
+    '/editobra': { allowedRoles: ['masterAdmin', 'Admin'] },
+    '/manageobra': { allowedRoles: ['masterAdmin', 'Admin'] },
 
     '/admin': { allowedRoles: ['Admin'] },    
     '/team': { allowedRoles: ['masterAdmin', 'Admin'] },

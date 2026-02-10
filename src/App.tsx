@@ -6,6 +6,10 @@ import WelcomePage from "./Pages/WelcomePage";
 import ClientList from "./components/ClientList";
 import CreateClient from "./components/CreateClient";
 import EditClient from "./components/EditClient";
+import ObraList from "./components/ObraList";
+import CreateObra from "./components/CreateObra";
+import EditObra from "./components/EditObra";
+import ManageObra from "./components/ManageObra";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
@@ -60,6 +64,16 @@ function App() {
             <Route
               path="/editclient/:clientId"
               element={<EditClient />}
+            ></Route>
+            <Route path="/allobras" element={<ObraList />}></Route>
+            <Route path="/addobra" element={<CreateObra />}></Route>
+            <Route
+              path="/editobra/:obraId"
+              element={<EditObra />}
+            ></Route>
+            <Route
+              path="/manageobra/:obraId"
+              element={<ManageObra />}
             ></Route>
           </Routes>
         </div>
