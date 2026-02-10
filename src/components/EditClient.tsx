@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../config";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+
 const EditClient = () => {
   const { clientId } = useParams<{ clientId: string }>();
 

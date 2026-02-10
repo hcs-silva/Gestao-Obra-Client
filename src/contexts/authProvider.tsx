@@ -1,11 +1,10 @@
 import { useState, useEffect, type ReactNode } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import type { User } from "../types/auth";
 import { AuthContext } from "./authContext";
+import { BACKEND_URL } from "../config";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:5005";
 
 interface AuthProviderProps {
   children: ReactNode;

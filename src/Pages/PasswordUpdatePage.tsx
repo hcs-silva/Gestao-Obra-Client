@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../config";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:5005";
+
 
 const PasswordUpdatePage = () => {
   const { userId } = useParams();

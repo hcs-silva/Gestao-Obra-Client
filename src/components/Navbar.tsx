@@ -5,8 +5,8 @@ import { useAuth } from "../hooks/useAuth";
 import { roleConfig } from "../config/roleConfig";
 import type { UserRole } from "../config/roleConfig";
 import axios from "axios";
+import { BACKEND_URL } from "../config";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
 
 const Navbar = () => {
   const { isLoggedIn, logout, user } = useAuth();
@@ -22,6 +22,10 @@ const Navbar = () => {
       nav("/");
     },
   };
+
+  const visibleItems = isLoggedIn
+    ? items
+    : items.filter((it) => !("onClick" in it && it.onClick === "login"));
 
   useEffect(() => {
     if (!isLoggedIn || !user || !user.clientId) {
@@ -57,7 +61,7 @@ const Navbar = () => {
         className={`${styles.logo} ${shouldHideImage ? styles.hidden : ""}`}
       />
       {isMasterAdmin ?  null : <span> Client ID: {user?.clientId}</span>}
-      {items.map((it) =>
+      {visibleItems.map((it) =>
         "to" in it ? (
           <button key={it.label} onClick={() => nav(it.to)}>
             {it.label}

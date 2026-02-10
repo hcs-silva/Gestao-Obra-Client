@@ -3,11 +3,12 @@ import commonStyles from "../styles/common.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config";
 
 
 import type { Client } from "../types/auth";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:5005";
+
 const ClientList = () => {
   const nav = useNavigate();
   
