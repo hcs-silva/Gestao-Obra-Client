@@ -214,4 +214,31 @@ form .link a:hover {
   background-color: #eaf6fb;
 }
 
+.clearBtn {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  background-color: white;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  width: 100%;
+  padding: 1rem 3rem;
+  margin-top: 20px;
+}
+.clearBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.clearBtn:hover:not(:disabled) {
+  background-color: #eaf6fb;
+}
+
 /*# sourceMappingURL=common.module.css.map */

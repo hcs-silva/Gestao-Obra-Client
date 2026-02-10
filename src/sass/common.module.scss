@@ -130,8 +130,17 @@ form {
   padding: $space-md $space-2xl;
 }
 
+
+
 // Secondary form button (cancel/back button)
 .cancelBtn {
   @include button-secondary;
   padding: $space-md $space-2xl;
+}
+
+.clearBtn {
+  @include button-secondary;
+  width: 100%;
+  padding: $space-md $space-2xl;
+  margin-top: 20px;
 }

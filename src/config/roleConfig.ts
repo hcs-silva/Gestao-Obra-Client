@@ -17,7 +17,7 @@ export type RoleConfig = {
 export const roleConfig: RoleConfig = {
   actions: {
     masterAdmin: [
-      { id: 'master-dashboard', label: 'Master Dashboard', to: '/masterdash' },
+      
       { id: 'clients', label: 'Client List', to: '/allclients' },
       { id: 'add-client', label: 'Add Client', to: '/addclient' },
       { id: 'settings', label: 'Settings', to: '/settings' },
