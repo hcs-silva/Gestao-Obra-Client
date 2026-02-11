@@ -44,12 +44,11 @@ function App() {
   }, [logout]);
 
   return (
-    <>
-      <div className={styles.layout}>
+    <div className={styles.layout}>
+      <Navbar />
+      <div className={styles.contentArea}>
         <Header />
-        <div className={styles.main}>
-          <Navbar />
-
+        <main className={styles.main}>
           <Routes>
             <Route path="/" element={<WelcomePage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
@@ -99,7 +98,7 @@ function App() {
                   <EditClient />
                 </ProtectedRoute>
               }
-              ></Route>
+            ></Route>
 
             {/* Client-based Protected Routes */}
             <Route
@@ -130,19 +129,13 @@ function App() {
             ></Route>
             <Route path="/allobras" element={<ObraList />}></Route>
             <Route path="/addobra" element={<CreateObra />}></Route>
-            <Route
-              path="/editobra/:obraId"
-              element={<EditObra />}
-            ></Route>
-            <Route
-              path="/manageobra/:obraId"
-              element={<ManageObra />}
-            ></Route>
+            <Route path="/editobra/:obraId" element={<EditObra />}></Route>
+            <Route path="/manageobra/:obraId" element={<ManageObra />}></Route>
           </Routes>
-        </div>
+        </main>
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

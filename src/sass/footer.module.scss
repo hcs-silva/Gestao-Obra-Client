@@ -5,7 +5,8 @@
   @include flex-center;
   background: $gray-900;
   color: white;
-  padding: $space-2xl $space-lg;
+  padding: $space-2xl;
+  width: 100%;
   
   text-align: center;
   border-top: 1px solid $gray-800;

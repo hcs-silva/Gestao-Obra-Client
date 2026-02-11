@@ -3,7 +3,7 @@
 
 .header {
   @include flex-between;
-  background: white;
+  background: $bg-light;
   padding: $space-xl $space-lg;
   border-radius: $radius-lg;
   

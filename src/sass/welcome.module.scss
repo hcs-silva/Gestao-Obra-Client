@@ -12,10 +12,11 @@
 
 .welcomePage {
   width: 100%;
-  
+  height: auto;
   @include flex-col;
   justify-content: center;
-  @include card-elevated;
+  align-items: center;
+  
   padding: $space-2xl;
   gap: $space-lg;
 

@@ -24,9 +24,9 @@ const ObraList = () => {
     } else {
       const filtered = obras.filter(
         (obra) =>
-          obra.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          obra.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          obra.status.toLowerCase().includes(searchTerm.toLowerCase())
+          obra.obraName.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+          obra.location?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+          obra.status.toLowerCase().includes(searchTerm?.toLowerCase()),
       );
       setFilteredObras(filtered);
     }
@@ -110,10 +110,10 @@ const ObraList = () => {
           ) : (
             filteredObras.map((obra) => (
               <tr key={obra._id}>
-                <td>{obra.name}</td>
+                <td>{obra.obraName}</td>
                 <td>{obra.location || "N/A"}</td>
                 <td>{getStatusLabel(obra.status)}</td>
-                <td>€{obra.totalExpenses.toFixed(2)}</td>
+                <td>€{(obra.totalExpenses ?? 0).toFixed(2)}</td>
                 <td>
                   <button
                     className={styles.editBtn}
